@@ -6,8 +6,8 @@ def main():
 
 
 def get_options():
-    options = []
     print("Insert your options. \nType 'done' when you are finished:")
+    options = []
 
     # Gets all options from the user
     while True:
@@ -15,23 +15,22 @@ def get_options():
         if option.lower() == "done":
             break
         options.append(option)
+
     return options
 
 
 # Takes a list of options and returns one option
 def compare_all(options):
-    if len(options) == 1:
-        return options[0]
-    
-    options.remove(compare_pair(options[0], options[1]))
+    while len(options) > 1:
+        winner = compare_pair(options.pop(0), options.pop(0))
+        options.append(winner)
+
+    return options[0]
 
 
+# Returns one of the two arguments
 def compare_pair(option_1, option_2):
-    if random.random() < 0.5:
-        return option_1
-    else:
-        return option_2
+    return option_1 if random.random() < 0.5 else option_2
 
 
-# print(get_options())
 main()
